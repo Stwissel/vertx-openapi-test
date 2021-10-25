@@ -1,0 +1,23 @@
+= OpenAPI Test
+
+Test of OpenAPI functionality. Postman collection in `/src/main/postman`
+
+Test to check on:
+
+- mandatory parameters
+- parameter type (int, enum)
+- Body content
+
+== URLS
+
+- http://localhost:8080/alphaobjects
+- http://localhost:8080/alphaobject/12
+
+To run:
+```
+mvn clean compile exec:java
+```
+
+== Schema
+
+in `/src/main/resources/APIStressTest.json`

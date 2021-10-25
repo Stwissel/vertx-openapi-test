@@ -1,0 +1,215 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "APIStressTest",
+        "version": "1.0.0",
+        "description": "trying out parameters"
+    },
+    "paths": {
+        "/alphaobjects": {
+            "summary": "Path used to manage the list of alphaobjects.",
+            "description": "The REST endpoint/path used to list and create zero or more `AlphaObject` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/AlphaObject"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Successful response - returns an array of `AlphaObject` entities."
+                    }
+                },
+                "operationId": "getAlphaObjects",
+                "summary": "List All AlphaObjects",
+                "description": "Gets a list of all `AlphaObject` entities."
+            },
+            "post": {
+                "requestBody": {
+                    "description": "A new `AlphaObject` to be created.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AlphaObject"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "createAlphaObject",
+                "summary": "Create a AlphaObject",
+                "description": "Creates a new instance of a `AlphaObject`."
+            },
+            "parameters": [
+                {
+                    "name": "urgent",
+                    "description": "Is ist urgent",
+                    "schema": {
+                        "type": "boolean"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "category",
+                    "description": "A-C",
+                    "schema": {
+                        "enum": [
+                            "a",
+                            "b",
+                            "c"
+                        ],
+                        "type": "string"
+                    },
+                    "in": "query",
+                    "required": true
+                }
+            ]
+        },
+        "/alphaobjects/{alphaobjectId}": {
+            "summary": "Path used to manage a single AlphaObject.",
+            "description": "The REST endpoint/path used to get, update, and delete single instances of an `AlphaObject`.  This path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks, respectively.",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AlphaObject"
+                                }
+                            }
+                        },
+                        "description": "Successful response - returns a single `AlphaObject`."
+                    }
+                },
+                "operationId": "getAlphaObject",
+                "summary": "Get a AlphaObject",
+                "description": "Gets the details of a single instance of a `AlphaObject`."
+            },
+            "put": {
+                "requestBody": {
+                    "description": "Updated `AlphaObject` information.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AlphaObject"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "updateAlphaObject",
+                "summary": "Update a AlphaObject",
+                "description": "Updates an existing `AlphaObject`."
+            },
+            "delete": {
+                "responses": {
+                    "204": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "deleteAlphaObject",
+                "summary": "Delete a AlphaObject",
+                "description": "Deletes an existing `AlphaObject`."
+            },
+            "parameters": [
+                {
+                    "name": "alphaobjectId",
+                    "description": "A unique identifier for a `AlphaObject`.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        }
+    },
+    "components": {
+        "schemas": {
+            "AlphaObject": {
+                "title": "Root Type for AlphaObject",
+                "description": "Sample Object to see how things go",
+                "required": [
+                    "color",
+                    "shape",
+                    "taste",
+                    "nounce"
+                ],
+                "type": "object",
+                "properties": {
+                    "color": {
+                        "description": "Traffic lights only",
+                        "enum": [
+                            "red",
+                            "yellow",
+                            "green"
+                        ],
+                        "type": "string",
+                        "example": "red"
+                    },
+                    "taste": {
+                        "description": "Taste all lowercase",
+                        "pattern": "[a-z]",
+                        "type": "string",
+                        "example": "sweet"
+                    },
+                    "shape": {
+                        "description": "Like in kindergarden 3-10 chars",
+                        "maxLength": 10,
+                        "minLength": 3,
+                        "type": "string",
+                        "example": "triangle"
+                    },
+                    "size": {
+                        "format": "int32",
+                        "description": "0-10",
+                        "maximum": 10,
+                        "minimum": 0,
+                        "type": "integer",
+                        "example": "7"
+                    },
+                    "active": {
+                        "description": "Is the object ative",
+                        "type": "boolean",
+                        "example": "true"
+                    },
+                    "nounce": {
+                        "writeOnly": true,
+                        "description": "Write only string",
+                        "type": "string",
+                        "example": "abc"
+                    },
+                    "someid": {
+                        "description": "comes back, is read-only",
+                        "type": "string",
+                        "readOnly": true,
+                        "example": "abc"
+                    }
+                },
+                "additionalProperties": false,
+                "example": {
+                    "color": "shape",
+                    "taste": "sweet",
+                    "shape": "triangle",
+                    "size": 42,
+                    "active": true
+                }
+            }
+        }
+    }
+}

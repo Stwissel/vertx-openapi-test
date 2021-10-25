@@ -1,0 +1,384 @@
+{
+	"info": {
+		"_postman_id": "adc0e11d-e498-44d7-aea4-7c0c1bcb394f",
+		"name": "OpenAPITests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Successfull URLs",
+			"item": [
+				{
+					"name": "Root",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080"
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ResourceList",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OpenAPISpec",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/resources/APIStressTest.json",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"APIStressTest.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Objects with category a",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/alphaobjects?category=a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"alphaobjects"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Plain Object get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/alphaobjects/test",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"alphaobjects",
+								"test"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Plain Object delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/alphaobjects/test",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"alphaobjects",
+								"test"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Object post success",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"color\": \"red\",\n    \"shape\": \"round\",\n    \"taste\" : \"sweet\",\n    \"nounce\" : \"ugoger\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/alphaobjects?category=a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"alphaobjects"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "a"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Failing calls (as expected)",
+			"item": [
+				{
+					"name": "Objects without category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/alphaobjects",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"alphaobjects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Objects with wrong category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/alphaobjects?category=A",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"alphaobjects"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "A"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Objects with wrong data type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/alphaobjects?category=a&urgent=7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"alphaobjects"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "a"
+								},
+								{
+									"key": "urgent",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Object post without body",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/alphaobjects?category=a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"alphaobjects"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Object post fail with additional parameter",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"color\": \"red\",\n    \"shape\": \"round\",\n    \"taste\" : \"sweet\",\n    \"nounce\" : \"ugoger\",\n    \"sneaky\" : \"param\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/alphaobjects?category=a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"alphaobjects"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "a"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Shouldn't those fail",
+			"item": [
+				{
+					"name": "Plain Object get with parameters",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/alphaobjects/test?bla=blub",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"alphaobjects",
+								"test"
+							],
+							"query": [
+								{
+									"key": "bla",
+									"value": "blub"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Object post with additional query parameter",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"color\": \"red\",\n    \"shape\": \"round\",\n    \"taste\" : \"sweet\",\n    \"nounce\" : \"ugoger\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/alphaobjects?category=a&dance=tango",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"alphaobjects"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "a"
+								},
+								{
+									"key": "dance",
+									"value": "tango"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
